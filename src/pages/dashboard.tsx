@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { Box, Flex, SimpleGrid, Text, theme } from '@chakra-ui/react'
 import dynamic from 'next/dynamic'
 
@@ -53,7 +54,9 @@ const options = {
       opacityFrom: 0.7,
       opacityTo: 0.3,
     },
+    colors: ['#D53F8C'],
   },
+  colors: ['#D53F8C'],
 }
 
 const series = [
@@ -65,28 +68,34 @@ const series = [
 
 export default function Dashboard() {
   return (
-    <Flex direction="column" h="100vh">
-      <Header />
+    <>
+      <Head>
+        <title>Painel | dashgo.</title>
+      </Head>
 
-      <Flex w="100%" my="6" maxW={1480} mx="auto" px="6">
-        <Sidebar />
+      <Flex direction="column" h="100vh">
+        <Header />
 
-        <SimpleGrid flex="1" gap="4" minChildWidth="320px" align="flex-start">
-          <Box p="8" bg="gray.800" borderRadius={8} pb="4">
-            <Text fontSize="lg" mb="4">
-              Inscritos da semana
-            </Text>
-            <Chart options={options} series={series} type="area" height={160} />
-          </Box>
+        <Flex w="100%" my="6" maxW={1480} mx="auto" px="6">
+          <Sidebar />
 
-          <Box p="8" bg="gray.800" borderRadius={8} pb="4">
-            <Text fontSize="lg" mb="4">
-              Taxa de abertura
-            </Text>
-            <Chart options={options} series={series} type="area" height={160} />
-          </Box>
-        </SimpleGrid>
+          <SimpleGrid flex="1" gap="4" minChildWidth="320px" align="flex-start">
+            <Box p="8" bg="gray.800" borderRadius={8} pb="4">
+              <Text fontSize="lg" mb="4">
+                Inscritos da semana
+              </Text>
+              <Chart options={options} series={series} type="area" height={160} />
+            </Box>
+
+            <Box p="8" bg="gray.800" borderRadius={8} pb="4">
+              <Text fontSize="lg" mb="4">
+                Taxa de abertura
+              </Text>
+              <Chart options={options} series={series} type="area" height={160} />
+            </Box>
+          </SimpleGrid>
+        </Flex>
       </Flex>
-    </Flex>
+    </>
   )
 }

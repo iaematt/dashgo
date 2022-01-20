@@ -1,3 +1,4 @@
+import NextLink from 'next/link'
 import Head from 'next/head'
 import { Box, Button, Divider, Flex, Heading, HStack, SimpleGrid, VStack } from '@chakra-ui/react'
 
@@ -18,7 +19,7 @@ export default function UserCreate() {
         <Flex w="100%" my="6" maxW={1480} mx="auto" px="6">
           <Sidebar />
 
-          <Box flex="1" borderRadius={8} bg="gray.800" p="8">
+          <Box flex="1" borderRadius={8} bg="gray.800" p="8" height="fit-content">
             <Heading size="lg" fontWeight="normal">
               Criar usuário
             </Heading>
@@ -44,7 +45,11 @@ export default function UserCreate() {
 
             <Flex mt="8" justify="flex-end">
               <HStack spacing="4">
-                <Button colorScheme="whiteAlpha">Cancelar</Button>
+                <NextLink href={'/users'}>
+                  <Button as="a" colorScheme="whiteAlpha" cursor="pointer">
+                    Cancelar
+                  </Button>
+                </NextLink>
                 <Button colorScheme="pink">Salvar</Button>
               </HStack>
             </Flex>

@@ -1,9 +1,9 @@
-import Head from 'next/head'
-import { Box, Flex, SimpleGrid, Text } from '@chakra-ui/react'
+import Head from 'next/head';
+import { Box, Flex, SimpleGrid, Text } from '@chakra-ui/react';
 
-import { Header } from '@components/Header'
-import { Sidebar } from '@components/Sidebar'
-import { ChartArea } from '@components/Charts/ChartArea'
+import { Header } from '@components/Header';
+import { Sidebar } from '@components/Sidebar';
+import { ChartArea } from '@components/Charts/ChartArea';
 
 export default function Dashboard() {
   return (
@@ -19,14 +19,14 @@ export default function Dashboard() {
           <Sidebar />
 
           <SimpleGrid flex="1" gap="4" minChildWidth="320px" align="flex-start">
-            <Box p="8" bg="gray.800" borderRadius={8} pb="4" height="fit-content">
+            <Box p={['6', '8']} bg="gray.800" borderRadius={8} pb="4" height="fit-content">
               <Text fontSize="lg" mb="4">
                 Inscritos da semana
               </Text>
               <ChartArea />
             </Box>
 
-            <Box p="8" bg="gray.800" borderRadius={8} pb="4" height="fit-content">
+            <Box p={['6', '8']} bg="gray.800" borderRadius={8} pb="4" height="fit-content">
               <Text fontSize="lg" mb="4">
                 Taxa de abertura
               </Text>
@@ -36,5 +36,5 @@ export default function Dashboard() {
         </Flex>
       </Flex>
     </>
-  )
+  );
 }

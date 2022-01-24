@@ -1,13 +1,37 @@
-import NextLink from 'next/link'
-import Head from 'next/head'
-import { Box, Button, Checkbox, Flex, Heading, Icon, Table, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
+import Link from 'next/link';
+import Head from 'next/head';
+import {
+  Box,
+  Button,
+  Checkbox,
+  Flex,
+  Heading,
+  Icon,
+  Spinner,
+  Table,
+  Tbody,
+  Td,
+  Text,
+  Th,
+  Thead,
+  Tr,
+  useBreakpointValue,
+} from '@chakra-ui/react';
+import { RiAddLine, RiPencilLine, RiRefreshLine } from 'react-icons/ri';
 
-import { Header } from '@components/Header'
-import { Sidebar } from '@components/Sidebar'
-import { RiAddLine, RiPencilLine } from 'react-icons/ri'
-import { Pagination } from '@components/Pagination'
+import { Header } from '@components/Header';
+import { Sidebar } from '@components/Sidebar';
+import { Pagination } from '@components/Pagination';
+import { useUsers } from '@services/hooks/useUsers';
 
 export default function UserList() {
+  const { data, isLoading, isFetching, refetch, error } = useUsers();
+
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
+
   return (
     <>
       <Head>
@@ -24,93 +48,100 @@ export default function UserList() {
             <Flex mb="8" justify="space-between" align="center">
               <Heading size="lg" fontWeight="normal">
                 Usuários
+                {!isLoading && isFetching && <Spinner size="sm" color="gray.500" ml="4" />}
               </Heading>
 
-              <NextLink href={'/users/create'}>
+              <Box>
                 <Button
                   as="a"
                   size="sm"
                   fontSize="sm"
-                  colorScheme="pink"
-                  leftIcon={<Icon as={RiAddLine} fontSize="18" />}
+                  colorScheme="blue"
+                  leftIcon={<Icon as={RiRefreshLine} fontSize="18" />}
                   cursor="pointer"
+                  mr="4"
+                  onClick={() => refetch()}
                 >
-                  Criar novo
+                  Atualizar
                 </Button>
-              </NextLink>
+                <Link href="/users/create" passHref>
+                  <Button
+                    as="a"
+                    size="sm"
+                    fontSize="sm"
+                    colorScheme="pink"
+                    leftIcon={<Icon as={RiAddLine} fontSize="18" />}
+                    cursor="pointer"
+                  >
+                    Criar novo
+                  </Button>
+                </Link>
+              </Box>
             </Flex>
 
-            <Table colorScheme="whiteAlpha">
-              <Thead>
-                <Tr>
-                  <Th px="6" color="gray.300" width="8">
-                    <Checkbox colorScheme="pink" />
-                  </Th>
-                  <Th>Usuário</Th>
-                  <Th>Data de cadastro</Th>
-                  <Th width="8"></Th>
-                </Tr>
-              </Thead>
+            {isLoading ? (
+              <Flex justify="center">
+                <Spinner />
+              </Flex>
+            ) : error ? (
+              <Flex>
+                <Text>Falha ao obter dados dos usuários.</Text>
+              </Flex>
+            ) : (
+              <>
+                <Table colorScheme="whiteAlpha">
+                  <Thead>
+                    <Tr>
+                      <Th px={['4', '4', '6']} color="gray.300" width="8">
+                        <Checkbox colorScheme="pink" />
+                      </Th>
+                      <Th>Usuário</Th>
+                      {isWideVersion && <Th>Data de cadastro</Th>}
+                      {isWideVersion && <Th width="8"></Th>}
+                    </Tr>
+                  </Thead>
 
-              <Tbody>
-                <Tr>
-                  <Td px="6">
-                    <Checkbox colorScheme="pink" />
-                  </Td>
-                  <Td>
-                    <Box>
-                      <Text fontWeight="bold">Matheus Bastos</Text>
-                      <Text fontSize="sm" color="gray.300">
-                        matheusbastos@outlook.com
-                      </Text>
-                    </Box>
-                  </Td>
-                  <Td>19 de Janeiro, 2022</Td>
-                  <Td>
-                    <Button
-                      as="a"
-                      size="sm"
-                      fontSize="sm"
-                      colorScheme="blue"
-                      leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
-                    >
-                      Editar
-                    </Button>
-                  </Td>
-                </Tr>
+                  <Tbody>
+                    {data.map((user) => {
+                      return (
+                        <Tr key={user.id}>
+                          <Td px={['4', '4', '6']}>
+                            <Checkbox colorScheme="pink" />
+                          </Td>
+                          <Td>
+                            <Box>
+                              <Text fontWeight="bold">{user.name}</Text>
+                              <Text fontSize="sm" color="gray.300">
+                                {user.email}
+                              </Text>
+                            </Box>
+                          </Td>
+                          {isWideVersion && <Td>{user.createdAt}</Td>}
+                          {isWideVersion && (
+                            <Td>
+                              <Button
+                                as="a"
+                                size="sm"
+                                fontSize="sm"
+                                colorScheme="blue"
+                                leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
+                              >
+                                Editar
+                              </Button>
+                            </Td>
+                          )}
+                        </Tr>
+                      );
+                    })}
+                  </Tbody>
+                </Table>
 
-                <Tr>
-                  <Td px="6">
-                    <Checkbox colorScheme="pink" />
-                  </Td>
-                  <Td>
-                    <Box>
-                      <Text fontWeight="bold">Diego Fernandes</Text>
-                      <Text fontSize="sm" color="gray.300">
-                        diego.schell.f@gmail.com
-                      </Text>
-                    </Box>
-                  </Td>
-                  <Td>18 de Janeiro, 2022</Td>
-                  <Td>
-                    <Button
-                      as="a"
-                      size="sm"
-                      fontSize="sm"
-                      colorScheme="blue"
-                      leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
-                    >
-                      Editar
-                    </Button>
-                  </Td>
-                </Tr>
-              </Tbody>
-            </Table>
-
-            <Pagination />
+                <Pagination />
+              </>
+            )}
           </Box>
         </Flex>
       </Box>
     </>
-  )
+  );
 }

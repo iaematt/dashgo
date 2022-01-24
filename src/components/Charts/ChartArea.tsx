@@ -1,18 +1,18 @@
-import { theme } from '@chakra-ui/react'
-import { randomInt } from 'crypto'
-import dynamic from 'next/dynamic'
+import { theme } from '@chakra-ui/react';
+import dynamic from 'next/dynamic';
+import { ApexOptions } from 'apexcharts';
 
 const Chart = dynamic(() => import('react-apexcharts'), {
-  ssr: false,
-})
+  ssr: true,
+});
 
-const options = {
+const options: ApexOptions = {
   chart: {
     toolbar: {
       show: false,
     },
     zoom: {
-      enable: false,
+      enabled: false,
     },
     foreColor: theme.colors.gray[500],
   },
@@ -54,7 +54,7 @@ const options = {
     colors: ['#D53F8C'],
   },
   colors: ['#D53F8C'],
-}
+};
 
 const series = [
   {
@@ -69,8 +69,8 @@ const series = [
       Math.floor(Math.random() * 15) + 2,
     ],
   },
-]
+];
 
 export function ChartArea() {
-  return <Chart options={options} series={series} type="area" height={160} />
+  return <Chart options={options} series={series} type="area" height={160} />;
 }

@@ -33,7 +33,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# project
 .vscode
 .yarn
 .yarnrc.yml
 yarn.lock
+example

@@ -94,7 +94,7 @@ export default function UserList() {
                   <Thead>
                     <Tr>
                       <Th px={['4', '4', '6']} color="gray.300" width="8">
-                        <Checkbox colorScheme="pink" />
+                        <Checkbox colorScheme="purple" />
                       </Th>
                       <Th>Usuário</Th>
                       {isWideVersion && <Th>Data de cadastro</Th>}
@@ -107,7 +107,7 @@ export default function UserList() {
                       return (
                         <Tr key={user.id}>
                           <Td px={['4', '4', '6']}>
-                            <Checkbox colorScheme="pink" />
+                            <Checkbox colorScheme="purple" />
                           </Td>
                           <Td>
                             <Box>

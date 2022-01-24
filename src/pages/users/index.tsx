@@ -48,7 +48,7 @@ export default function UserList() {
             <Flex mb="8" justify="space-between" align="center">
               <Heading size="lg" fontWeight="normal">
                 Usuários
-                {!isLoading && isFetching && <Spinner size="sm" color="gray.500" ml="4" />}
+                {!isLoading && isFetching && <Spinner size="sm" color="green.500" ml="4" />}
               </Heading>
 
               <Box>
@@ -56,11 +56,12 @@ export default function UserList() {
                   as="a"
                   size="sm"
                   fontSize="sm"
-                  colorScheme="blue"
+                  colorScheme="green"
                   leftIcon={<Icon as={RiRefreshLine} fontSize="18" />}
                   cursor="pointer"
                   mr="4"
                   onClick={() => refetch()}
+                  isLoading={isFetching}
                 >
                   Atualizar
                 </Button>
@@ -69,7 +70,7 @@ export default function UserList() {
                     as="a"
                     size="sm"
                     fontSize="sm"
-                    colorScheme="pink"
+                    colorScheme="purple"
                     leftIcon={<Icon as={RiAddLine} fontSize="18" />}
                     cursor="pointer"
                   >
@@ -123,7 +124,7 @@ export default function UserList() {
                                 as="a"
                                 size="sm"
                                 fontSize="sm"
-                                colorScheme="blue"
+                                colorScheme="whiteAlpha"
                                 leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
                               >
                                 Editar

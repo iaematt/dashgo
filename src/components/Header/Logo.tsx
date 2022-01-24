@@ -7,7 +7,7 @@ export function Logo() {
       <a title="dashgo.">
         <Text fontSize={['2xl', '3xl']} fontWeight="bold" letterSpacing="tight" w={['none', '64']}>
           dashgo
-          <Text as="span" ml="1" color="pink.500">
+          <Text as="span" ml="1" color="purple.500">
             .
           </Text>
         </Text>

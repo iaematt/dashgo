@@ -100,7 +100,7 @@ export default function UserCreate() {
                     Cancelar
                   </Button>
                 </NextLink>
-                <Button colorScheme="pink" type="submit" isLoading={isSubmitting}>
+                <Button colorScheme="purple" type="submit" isLoading={isSubmitting}>
                   Salvar
                 </Button>
               </HStack>

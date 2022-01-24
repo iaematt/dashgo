@@ -68,7 +68,7 @@ export default function SignIn() {
             />
           </Stack>
 
-          <Button type="submit" mt="6" colorScheme="pink" size="lg" isLoading={isSubmitting}>
+          <Button type="submit" mt="6" colorScheme="purple" size="lg" isLoading={isSubmitting}>
             Entrar
           </Button>
         </Flex>

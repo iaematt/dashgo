@@ -1,8 +1,8 @@
-import { Button } from '@chakra-ui/react'
+import { Button } from '@chakra-ui/react';
 
 interface PaginationItemProps {
-  page: number
-  isCurrent?: boolean
+  page: number;
+  isCurrent?: boolean;
 }
 
 export function PaginationItem({ isCurrent = false, page }: PaginationItemProps) {
@@ -12,13 +12,13 @@ export function PaginationItem({ isCurrent = false, page }: PaginationItemProps)
         size="sm"
         fontSize="xs"
         width="4"
-        colorScheme="pink"
+        colorScheme="purple"
         disabled
-        _disabled={{ bg: 'pink.500', cursor: 'not-allowed' }}
+        _disabled={{ bg: 'purple.400', cursor: 'not-allowed' }}
       >
         {page}
       </Button>
-    )
+    );
   }
 
   return (
@@ -33,5 +33,5 @@ export function PaginationItem({ isCurrent = false, page }: PaginationItemProps)
     >
       {page}
     </Button>
-  )
+  );
 }

@@ -51,9 +51,9 @@ const options: ApexOptions = {
       opacityFrom: 0.7,
       opacityTo: 0.3,
     },
-    colors: ['#D53F8C'],
+    colors: [theme.colors.purple[500]],
   },
-  colors: ['#D53F8C'],
+  colors: [theme.colors.purple[500]],
 };
 
 const series = [

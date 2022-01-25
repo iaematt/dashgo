@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import { ApexOptions } from 'apexcharts';
 
 const Chart = dynamic(() => import('react-apexcharts'), {
-  ssr: true,
+  ssr: false,
 });
 
 const options: ApexOptions = {
